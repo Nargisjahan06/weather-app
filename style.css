@@ -1,0 +1,109 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #87ceeb, #fefbd8);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+h1 {
+    color: #ff914d;
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px #fff3;
+}
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #ff914d;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #ffcc70;
+    box-shadow: 0 0 8px #ffd580;
+}
+
+/* Button */
+button {
+    background: #ff914d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffcc70;
+    color: #333;
+}
+
+/* Weather result box */
+#weatherResult {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    color: #333;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in;
+}
+
+/* Fade-in animation for weather data */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Add some fun beach vibes with pseudo elements */
+body::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: url('https://cdn.pixabay.com/photo/2017/08/30/07/56/sea-2692294_1280.png') no-repeat center;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: url('https://cdn-icons-png.flaticon.com/512/869/869869.png') no-repeat center;
+    background-size: contain;
+    z-index: -1;
+    opacity: 0.5;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1> Weather vibes☀️</h1>
+    <p>Find out if it’s a perfect day for you to sip chai or cutting tasks from your list!</p>
+
+    <div class="input-container">
+      <input type="text" id="cityInput" placeholder="Enter city name">
+      <button onclick="getWeather()">Get Weather</button>
+    </div>
+
+    <div id="weatherResult" class="weather-card">
+      <p>Enter a city to see the weather!</p>
+    </div>
+  </div>
+
+  <script>
+    const API_KEY = "37acc27975ac47c2bec145245253008";
+
+    async function getWeather() {
+      const city = document.getElementById("cityInput").value.trim();
+
+      if (city === "") {
+        alert("Please enter a city name!");
+        return;
+      }
+
+      const url = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&aqi=yes`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("City not found");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("weatherResult").innerHTML = `
+          <h2>${data.location.name}</h2>
+          <img src="${data.current.condition.icon}" alt="${data.current.condition.text}">
+          <p><strong>Temperature:</strong> ${data.current.temp_c}°C</p>
+          <p><strong>Condition:</strong> ${data.current.condition.text}</p>
+          <p><strong>Humidity:</strong> ${data.current.humidity}%</p>
+          <p><strong>Wind:</strong> ${data.current.wind_kph} kph</p>
+        `;
+      } catch (error) {
+        document.getElementById("weatherResult").innerHTML = `
+          <p class="error">Oops! Could not find weather for "${city}". Try again!</p>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
+
